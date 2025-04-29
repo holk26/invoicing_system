@@ -110,5 +110,3 @@ invoicing_system/
 
 ## Licencia
 Este proyecto está desarrollado para fines académicos y no debe utilizarse en entornos de producción sin las debidas adaptaciones y pruebas.
-
-© [Año] Universidad Politécnico Colombiano Jaime Isaza Cadavid - Todos los derechos reservados
