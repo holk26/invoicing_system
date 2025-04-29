@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Tax List</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tax in taxes %}
+        <tr>
+            <td>{{ tax.name }}</td>
+            <td>{{ tax.rate }}%</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Invoice List</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Invoice Number</th>
+            <th>Client</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for invoice in invoices %}
+        <tr>
+            <td>{{ invoice.invoice_number }}</td>
+            <td>{{ invoice.client.name }}</td>
+            <td>{{ invoice.total_amount }}</td>
+            <td>{{ invoice.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -32,7 +32,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'invoicing.urls'
+ROOT_URLCONF = 'invoicing_system.urls'
 
 TEMPLATES = [
     {
@@ -50,7 +50,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'invoicing.wsgi.application'
+WSGI_APPLICATION = 'invoicing_system.wsgi.application'
 
 DATABASES = {
     'default': {

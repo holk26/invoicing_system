@@ -1,16 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from django.contrib import messages
 from core.models import (Invoice, Company, Client, Product, Tax, Note, OfflineQueue, 
-                         AuditLog, User)
+                         AuditLog, User, InvoiceItem)
 from core.forms import (CustomUserCreationForm, CompanyForm, ClientForm, ProductForm, 
                         TaxForm, InvoiceForm, InvoiceItemFormSet)
 import zeep
 import json
 from django.http import JsonResponse
+from django.views import View
+
+def home_view(request):
+    return render(request, 'home.html')
 
 class RegisterView(CreateView):
     form_class = CustomUserCreationForm
@@ -28,37 +32,67 @@ class CompanyCreateView(LoginRequiredMixin, CreateView):
     template_name = 'core/company_form.html'
     success_url = reverse_lazy('company_list')
 
-class ClientListView(LoginRequiredMixin, ListView):
+class ClientListView(ListView):
     model = Client
     template_name = 'core/client_list.html'
-    context_object_name = 'clients'
 
-class ClientCreateView(LoginRequiredMixin, CreateView):
+class ClientCreateView(CreateView):
     model = Client
-    form_class = ClientForm
+    fields = ['name', 'email', 'phone']
     template_name = 'core/client_form.html'
     success_url = reverse_lazy('client_list')
 
-class ProductListView(LoginRequiredMixin, ListView):
+class ClientUpdateView(UpdateView):
+    model = Client
+    fields = ['name', 'email', 'phone']
+    template_name = 'core/client_form.html'
+    success_url = reverse_lazy('client_list')
+
+class ClientDeleteView(DeleteView):
+    model = Client
+    template_name = 'core/client_confirm_delete.html'
+    success_url = reverse_lazy('client_list')
+
+class ProductListView(ListView):
     model = Product
     template_name = 'core/product_list.html'
-    context_object_name = 'products'
 
-class ProductCreateView(LoginRequiredMixin, CreateView):
+class ProductCreateView(CreateView):
     model = Product
-    form_class = ProductForm
+    fields = ['name', 'price', 'stock']
     template_name = 'core/product_form.html'
     success_url = reverse_lazy('product_list')
 
-class TaxListView(LoginRequiredMixin, ListView):
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = ['name', 'price', 'stock']
+    template_name = 'core/product_form.html'
+    success_url = reverse_lazy('product_list')
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'core/product_confirm_delete.html'
+    success_url = reverse_lazy('product_list')
+
+class TaxListView(ListView):
     model = Tax
     template_name = 'core/tax_list.html'
-    context_object_name = 'taxes'
 
-class TaxCreateView(LoginRequiredMixin, CreateView):
+class TaxCreateView(CreateView):
     model = Tax
-    form_class = TaxForm
+    fields = ['name', 'rate']
     template_name = 'core/tax_form.html'
+    success_url = reverse_lazy('tax_list')
+
+class TaxUpdateView(UpdateView):
+    model = Tax
+    fields = ['name', 'rate']
+    template_name = 'core/tax_form.html'
+    success_url = reverse_lazy('tax_list')
+
+class TaxDeleteView(DeleteView):
+    model = Tax
+    template_name = 'core/tax_confirm_delete.html'
     success_url = reverse_lazy('tax_list')
 
 class InvoiceListView(LoginRequiredMixin, ListView):
