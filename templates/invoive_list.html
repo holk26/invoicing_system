@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Facturas</h2>
+<a href="{% url 'invoice_add' %}" class="btn btn-primary mb-3">Crear Factura</a>
+<form method="post" action="{% url 'invoice_sync' %}" class="mb-3">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-secondary">Sincronizar Facturas Offline</button>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for invoice in invoices %}
+            <tr>
+                <td>{{ invoice.invoice_number }}</td>
+                <td>{{ invoice.client.name }}</td>
+                <td>{{ invoice.issue_date|date:"d/m/Y" }}</td>
+                <td>{{ invoice.total_amount }}</td>
+                <td>{{ invoice.get_status_display }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

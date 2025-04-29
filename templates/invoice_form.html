@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h2>Crear Factura</h2>
+<form method="post" id="invoiceForm">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <h3>Ítems</h3>
+    {{ formset.management_form }}
+    {% for form in formset %}
+        <div class="formset-row">
+            {{ form|crispy }}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('invoiceForm');
+    form.addEventListener('submit', function(e) {
+        if (!navigator.onLine) {
+            e.preventDefault();
+            // Store form data in localStorage (RF10)
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => { data[key] = value; });
+            localStorage.setItem('pendingInvoice', JSON.stringify(data));
+            alert('Factura guardada localmente. Sincronice cuando esté en línea.');
+        }
+    });
+});
+</script>
+{% endblock %}

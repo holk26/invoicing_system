@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Reporte de Ventas 2025</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for invoice in invoices %}
+            <tr>
+                <td>{{ invoice.invoice_number }}</td>
+                <td>{{ invoice.client.name }}</td>
+                <td>{{ invoice.issue_date|date:"d/m/Y" }}</td>
+                <td>{{ invoice.total_amount }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
