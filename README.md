@@ -110,3 +110,13 @@ invoicing_system/
 
 ## Licencia
 Este proyecto está desarrollado para fines académicos y no debe utilizarse en entornos de producción sin las debidas adaptaciones y pruebas.
+
+Imagenes
+
+![alt text](<Screenshot 2025-04-29 at 12.21.47 AM-1.png>)
+
+![alt text](<Screenshot 2025-04-29 at 12.23.50 AM.png>)
+
+![alt text](<Screenshot 2025-04-29 at 12.24.40 AM.png>)
+
+![alt text](<Screenshot 2025-04-29 at 12.24.25 AM.png>)
