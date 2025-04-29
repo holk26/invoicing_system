@@ -1,2 +1,2 @@
 # invoicing_system
-Politegnico
+Politecnico
