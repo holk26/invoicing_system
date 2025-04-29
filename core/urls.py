@@ -1,16 +1,18 @@
-from django.urls import path
+from django.urls import path, include
 from .views import (
     home_view,
+    RegisterView,
     ClientListView, ClientCreateView, ClientUpdateView, ClientDeleteView,
     ProductListView, ProductCreateView, ProductUpdateView, ProductDeleteView,
     TaxListView, TaxCreateView, TaxUpdateView, TaxDeleteView,
-    CompanyListView, CompanyCreateView,
+    CompanyListView, CompanyCreateView, CompanyUpdateView, CompanyDeleteView,
     InvoiceListView, InvoiceCreateView, InvoiceSyncView,
     ReportView
 )
 
 urlpatterns = [
     path('', home_view, name='home'),
+    path('register/', RegisterView.as_view(), name='register'),
     
     path('clients/', ClientListView.as_view(), name='client_list'),
     path('clients/create/', ClientCreateView.as_view(), name='client_create'),
@@ -29,6 +31,8 @@ urlpatterns = [
     
     path('companies/', CompanyListView.as_view(), name='company_list'),
     path('companies/create/', CompanyCreateView.as_view(), name='company_create'),
+    path('companies/<int:pk>/update/', CompanyUpdateView.as_view(), name='company_update'),
+    path('companies/<int:pk>/delete/', CompanyDeleteView.as_view(), name='company_delete'),
     
     path('invoices/', InvoiceListView.as_view(), name='invoice_list'),
     path('invoices/create/', InvoiceCreateView.as_view(), name='invoice_create'),

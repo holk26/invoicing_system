@@ -32,19 +32,31 @@ class CompanyCreateView(LoginRequiredMixin, CreateView):
     template_name = 'core/company_form.html'
     success_url = reverse_lazy('company_list')
 
+class CompanyUpdateView(LoginRequiredMixin, UpdateView):
+    model = Company
+    form_class = CompanyForm
+    template_name = 'core/company_form.html'
+    success_url = reverse_lazy('company_list')
+
+class CompanyDeleteView(LoginRequiredMixin, DeleteView):
+    model = Company
+    template_name = 'core/company_confirm_delete.html'
+    success_url = reverse_lazy('company_list')
+
 class ClientListView(ListView):
     model = Client
     template_name = 'core/client_list.html'
+    context_object_name = 'object_list'
 
 class ClientCreateView(CreateView):
     model = Client
-    fields = ['name', 'email', 'phone']
+    fields = ['company', 'identification_type', 'identification_number', 'name', 'address', 'phone', 'email']
     template_name = 'core/client_form.html'
     success_url = reverse_lazy('client_list')
 
 class ClientUpdateView(UpdateView):
     model = Client
-    fields = ['name', 'email', 'phone']
+    fields = ['company', 'identification_type', 'identification_number', 'name', 'address', 'phone', 'email']
     template_name = 'core/client_form.html'
     success_url = reverse_lazy('client_list')
 
@@ -59,13 +71,13 @@ class ProductListView(ListView):
 
 class ProductCreateView(CreateView):
     model = Product
-    fields = ['name', 'price', 'stock']
+    fields = ['company', 'code', 'description', 'price', 'tax', 'category', 'stock_quantity']
     template_name = 'core/product_form.html'
     success_url = reverse_lazy('product_list')
 
 class ProductUpdateView(UpdateView):
     model = Product
-    fields = ['name', 'price', 'stock']
+    fields = ['company', 'code', 'description', 'price', 'tax', 'category', 'stock_quantity']
     template_name = 'core/product_form.html'
     success_url = reverse_lazy('product_list')
 
@@ -80,13 +92,13 @@ class TaxListView(ListView):
 
 class TaxCreateView(CreateView):
     model = Tax
-    fields = ['name', 'rate']
+    fields = ['tax_type', 'rate', 'description']
     template_name = 'core/tax_form.html'
     success_url = reverse_lazy('tax_list')
 
 class TaxUpdateView(UpdateView):
     model = Tax
-    fields = ['name', 'rate']
+    fields = ['tax_type', 'rate', 'description']
     template_name = 'core/tax_form.html'
     success_url = reverse_lazy('tax_list')
 

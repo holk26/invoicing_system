@@ -2,20 +2,32 @@
 
 {% block content %}
 <h1>Client List</h1>
-<table>
+<a href="{% url 'client_create' %}" class="btn btn-primary mb-3">Add New Client</a>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Name</th>
+            <th>Identification</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>Address</th>
+            <th>Company</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        {% for client in clients %}
+        {% for client in object_list %}
         <tr>
             <td>{{ client.name }}</td>
+            <td>{{ client.identification_type }} {{ client.identification_number }}</td>
             <td>{{ client.email }}</td>
             <td>{{ client.phone }}</td>
+            <td>{{ client.address }}</td>
+            <td>{{ client.company.business_name }}</td>
+            <td>
+                <a href="{% url 'client_update' client.id %}" class="btn btn-sm btn-info">Edit</a>
+                <a href="{% url 'client_delete' client.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

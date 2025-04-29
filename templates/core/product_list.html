@@ -2,20 +2,30 @@
 
 {% block content %}
 <h1>Product List</h1>
-<table>
+<a href="{% url 'product_create' %}" class="btn btn-primary mb-3">Add New Product</a>
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>Name</th>
+            <th>Code</th>
             <th>Description</th>
             <th>Price</th>
+            <th>Tax</th>
+            <th>Stock</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        {% for product in products %}
+        {% for product in object_list %}
         <tr>
-            <td>{{ product.name }}</td>
+            <td>{{ product.code }}</td>
             <td>{{ product.description }}</td>
             <td>{{ product.price }}</td>
+            <td>{{ product.tax }}</td>
+            <td>{{ product.stock_quantity }}</td>
+            <td>
+                <a href="{% url 'product_update' product.id %}" class="btn btn-sm btn-info">Edit</a>
+                <a href="{% url 'product_delete' product.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

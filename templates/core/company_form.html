@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% if form.instance.pk %}Edit Company{% else %}Create New Company{% endif %}</h1>
+<form method="post" class="form">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group mb-3">
+                <label for="{{ form.business_name.id_for_label }}">Business Name</label>
+                {{ form.business_name }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.nit.id_for_label }}">NIT</label>
+                {{ form.nit }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.tax_regime.id_for_label }}">Tax Regime</label>
+                {{ form.tax_regime }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group mb-3">
+                <label for="{{ form.email.id_for_label }}">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.phone.id_for_label }}">Phone</label>
+                {{ form.phone }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.address.id_for_label }}">Address</label>
+                {{ form.address }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group mb-3">
+        <label for="{{ form.logo_path.id_for_label }}">Logo Path</label>
+        {{ form.logo_path }}
+    </div>
+    <div class="form-group mb-3">
+        <label for="{{ form.digital_certificate_path.id_for_label }}">Digital Certificate Path</label>
+        {{ form.digital_certificate_path }}
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{% url 'company_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
