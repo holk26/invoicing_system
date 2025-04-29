@@ -4,7 +4,7 @@
 Sistema web para la gestión de facturación electrónica desarrollado para cumplir con los requerimientos de la DIAN (Dirección de Impuestos y Aduanas Nacionales) en Colombia. Esta aplicación permite a empresas generar, administrar y enviar facturas electrónicas, notas crédito y notas débito, asegurando el cumplimiento con las normativas fiscales vigentes.
 
 ## Desarrollado para
-Universidad Politécnico Colombiano Jaime Isaza Cadavid
+Universidad Politécnico Colombiano
 
 ## Características Principales
 
@@ -37,7 +37,7 @@ Universidad Politécnico Colombiano Jaime Isaza Cadavid
 
 1. Clonar el repositorio:
 ```bash
-git clone https://github.com/usuario/invoicing_system.git
+git clone https://github.com/holk26/invoicing_system.git
 cd invoicing_system
 ```
 
@@ -105,9 +105,8 @@ invoicing_system/
 3. **RNF14**: Internacionalización con soporte para español colombiano
 
 ## Equipo de Desarrollo
-- [Nombre del Estudiante 1]
-- [Nombre del Estudiante 2]
-- [Nombre del Estudiante 3]
+- Homero Cabrera Araque
+
 
 ## Licencia
 Este proyecto está desarrollado para fines académicos y no debe utilizarse en entornos de producción sin las debidas adaptaciones y pruebas.
